@@ -802,6 +802,14 @@ YUI.add('ez-alloyeditor-plugin-embed-tests', function (Y) {
             );
         },
 
+        "Should insert the widget after the focused one": function () {
+            var existing = this._getWidget('[data-ezelement="ezembed"]');
+
+            existing.focus();
+            this.editor.get('nativeEditor').execCommand('ezembed');
+            this._assertIsNewEmbed(existing.wrapper.getNext());
+        },
+
         "Should insert the widget at the beginning of the document": function () {
             var ed = this.editor.get('nativeEditor');
 
@@ -809,14 +817,6 @@ YUI.add('ez-alloyeditor-plugin-embed-tests', function (Y) {
             ed.execCommand('ezembed');
 
             this._assertIsNewEmbed(this.editor.get('nativeEditor').element.getChild(0));
-        },
-
-        "Should insert the widget after the focused one": function () {
-            var existing = this._getWidget('[data-ezelement="ezembed"]');
-
-            existing.focus();
-            this.editor.get('nativeEditor').execCommand('ezembed');
-            this._assertIsNewEmbed(existing.wrapper.getNext());
         },
     });
 
