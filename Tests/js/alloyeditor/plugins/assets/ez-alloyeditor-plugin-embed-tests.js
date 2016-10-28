@@ -803,7 +803,10 @@ YUI.add('ez-alloyeditor-plugin-embed-tests', function (Y) {
         },
 
         "Should insert the widget at the beginning of the document": function () {
-            this.editor.get('nativeEditor').execCommand('ezembed');
+            var ed = this.editor.get('nativeEditor');
+
+            ed.focus();
+            ed.execCommand('ezembed');
 
             this._assertIsNewEmbed(this.editor.get('nativeEditor').element.getChild(0));
         },
